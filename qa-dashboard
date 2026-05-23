@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-System QA Dashboard</title>
+    <!-- Tailwind CSS for modern mobile-first styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8 border-b border-gray-800 pb-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight md:text-3xl">Multi-System QA Control</h1>
+                <p class="text-xs text-gray-400 mt-1">Real-time status tracking</p>
+            </div>
+            <div class="text-right">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900/50 text-green-400 border border-green-500/30">
+                    <span class="w-1.5 h-1.5 mr-1.5 bg-green-400 rounded-full animate-pulse"></span> Live Stream Active
+                </span>
+            </div>
+        </header>
+
+        <!-- Dashboard Grid (Responsive: 1 col on mobile, 3 cols on desktop) -->
+        <main class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- SYSTEM 1 CARD -->
+            <div class="bg-gray-800 border border-gray-700 rounded-xl p-6 shadow-xl transition hover:border-blue-500/50">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-200">System Alpha (Core UI)</h2>
+                        <span id="sys1-badge" class="mt-1 inline-block text-xs bg-green-900/40 text-green-400 px-2 py-0.5 rounded border border-green-800">Operational</span>
+                    </div>
+                    <div id="sys1-dot" class="w-3 h-3 bg-green-400 rounded-full shadow-[0_0_8px_rgba(74,222,128,0.5)]"></div>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs text-gray-400 mb-1">
+                            <span>Test Progress</span>
+                            <span id="sys1-progress-text" class="font-medium text-blue-400">0%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+                            <div id="sys1-progress-bar" class="bg-blue-500 h-full w-[0%] transition-all duration-500 ease-out"></div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-center pt-2">
+                        <div class="bg-gray-900/50 p-2 rounded border border-gray-700/50"><p class="text-xs text-gray-400">Passed</p><p id="sys1-passed" class="text-lg font-bold text-green-400">0</p></div>
+                        <div class="bg-gray-900/50 p-2 rounded border border-gray-700/50"><p class="text-xs text-gray-400">Failed</p><p id="sys1-failed" class="text-lg font-bold text-red-400">0</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SYSTEM 2 CARD -->
+            <div class="bg-gray-800 border border-gray-700 rounded-xl p-6 shadow-xl transition hover:border-purple-500/50">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-200">System Beta (API Layer)</h2>
+                        <span id="sys2-badge" class="mt-1 inline-block text-xs bg-yellow-900/40 text-yellow-400 px-2 py-0.5 rounded border border-yellow-800">Running Automation</span>
+                    </div>
+                    <div id="sys2-dot" class="w-3 h-3 bg-yellow-400 rounded-full shadow-[0_0_8px_rgba(250,204,21,0.5)] animate-pulse"></div>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs text-gray-400 mb-1">
+                            <span>Test Progress</span>
+                            <span id="sys2-progress-text" class="font-medium text-purple-400">0%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+                            <div id="sys2-progress-bar" class="bg-purple-500 h-full w-[0%] transition-all duration-500 ease-out"></div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-center pt-2">
+                        <div class="bg-gray-900/50 p-2 rounded border border-gray-700/50"><p class="text-xs text-gray-400">Passed</p><p id="sys2-passed" class="text-lg font-bold text-green-400">0</p></div>
+                        <div class="bg-gray-900/50 p-2 rounded border border-gray-700/50"><p class="text-xs text-gray-400">Failed</p><p id="sys2-failed" class="text-lg font-bold text-red-400">0</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SYSTEM 3 CARD -->
+            <div class="bg-gray-800 border border-gray-700 rounded-xl p-6 shadow-xl transition hover:border-amber-500/50">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-200">System Gamma (Database Sync)</h2>
+                        <span id="sys3-badge" class="mt-1 inline-block text-xs bg-gray-700 text-gray-400 px-2 py-0.5 rounded border border-gray-600">Idle / Awaiting</span>
+                    </div>
+                    <div id="sys3-dot" class="w-3 h-3 bg-gray-500 rounded-full"></div>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs text-gray-400 mb-1">
+                            <span>Test Progress</span>
+                            <span id="sys3-progress-text" class="font-medium text-amber-400">0%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+                            <div id="sys3-progress-bar" class="bg-amber-500 h-full w-[0%] transition-all duration-500 ease-out"></div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-center pt-2">
+                        <div class="bg-gray-900/50 p-2 rounded border border-gray-700/50"><p class="text-xs text-gray-400">Passed</p><p id="sys3-passed" class="text-lg font-bold text-green-400">0</p></div>
+                        <div class="bg-gray-900/50 p-2 rounded border border-gray-700/50"><p class="text-xs text-gray-400">Failed</p><p id="sys3-failed" class="text-lg font-bold text-red-400">0</p></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- 🔮 REAL-TIME ENGINE (JavaScript) -->
+    <script>
+        // Simulation engine representing data feeds coming from your real testing systems
+        function simulateRealTimeData() {
+            setInterval(() => {
+                // System 1 Simulation
+                let s1Progress = Math.floor(Math.random() * 100);
+                document.getElementById('sys1-progress-bar').style.width = s1Progress + '%';
+                document.getElementById('sys1-progress-text').innerText = s1Progress + '%';
+                document.getElementById('sys1-passed').innerText = Math.floor(s1Progress * 1.5);
+                document.getElementById('sys1-failed').innerText = Math.floor(s1Progress * 0.1);
+
+                // System 2 Simulation
+                let s2Progress = Math.floor(Math.random() * 100);
+                document.getElementById('sys2-progress-bar').style.width = s2Progress + '%';
+                document.getElementById('sys2-progress-text').innerText = s2Progress + '%';
+                document.getElementById('sys2-passed').innerText = Math.floor(s2Progress * 1.2);
+                document.getElementById('sys2-failed').innerText = Math.floor(s2Progress * 0.3);
+                
+                // System 3 State Changes randomly
+                if(s2Progress > 75) {
+                    document.getElementById('sys3-dot').className = "w-3 h-3 bg-red-500 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.5)] animate-bounce";
+                    document.getElementById('sys3-badge').innerText = "ALERT: Error Injected";
+                    document.getElementById('sys3-badge').className = "mt-1 inline-block text-xs bg-red-900/40 text-red-400 px-2 py-0.5 rounded border border-red-800";
+                    document.getElementById('sys3-failed').innerText = "14";
+                } else {
+                    document.getElementById('sys3-dot').className = "w-3 h-3 bg-green-400 rounded-full shadow-[0_0_8px_rgba(74,222,128,0.5)]";
+                    document.getElementById('sys3-badge').innerText = "Stable Sync";
+                    document.getElementById('sys3-badge').className = "mt-1 inline-block text-xs bg-green-900/40 text-green-400 px-2 py-0.5 rounded border border-green-800";
+                    document.getElementById('sys3-progress-bar').style.width = '100%';
+                    document.getElementById('sys3-progress-text').innerText = '100%';
+                    document.getElementById('sys3-passed').innerText = "240";
+                    document.getElementById('sys3-failed').innerText = "0";
+                }
+            }, 3000); // Updates automatically every 3 seconds
+        }
+
+        // Connect your real backend API or WebSocket connection here:
+        // Example: 
+        // const socket = new WebSocket('ws://your-qa-runner-system.com');
+        // socket.onmessage = function(event) { let data = JSON.parse(event.data); ... update DOM elements ... }
+
+        window.onload = simulateRealTimeData;
+    </script>
+</body>
+</html>
